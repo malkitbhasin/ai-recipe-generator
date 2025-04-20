@@ -1,0 +1,9 @@
+openai
+pydantic
+langchain_openai 
+langchain_core 
+langchain_community
+langgraph
+langchain_google_genai
+pillow
+streamlit
