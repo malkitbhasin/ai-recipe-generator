@@ -9,13 +9,19 @@ st.markdown(
     .main {
         padding-top: 0rem !important;
     }
+    .title {
+        font-size: 14px; /* Adjust the font size as needed */
+        font-weight: normal; 
+        text-align: left;
+        color: #333333;
+    }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 # Streamlit UI
-st.title("AI Recipe Generator")
+st.markdown('<h3 class="title">AI Recipe Generator</h3>', unsafe_allow_html=True)
 
 # Custom message for file size limit
 st.markdown(
@@ -30,8 +36,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown('Upload an image of cooked food (Pls upload an image smaller than 5 mb)', unsafe_allow_html=True)
+
 # File uploader for image input
-uploaded_file = st.file_uploader("Upload an image of cooked food (Pls upload an image smaller than 5 mb)", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload an image of cooked food (Pls upload an image smaller than 5 mb)", type=["jpg", "jpeg", "png"], label_visibility="collapsed")
 
 if uploaded_file:
     # Check file size (limit: 5 MB)
