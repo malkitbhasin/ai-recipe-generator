@@ -16,7 +16,6 @@ st.markdown(
 
 # Streamlit UI
 st.title("AI Recipe Generator")
-st.write("Upload an image of any cooked food, and the app will generate a recipe for you!")t
 
 # Custom message for file size limit
 st.markdown(
@@ -26,29 +25,30 @@ st.markdown(
         font-size: 14px;
         color: red;
         font-weight: bold;
-    }
     </style>
     """,
     unsafe_allow_html=True,
 )
-st.markdown('<p class="file-size-note">**Note:** Please upload an image smaller than <strong>5 MB</strong> (JPEG/PNG).</p>', unsafe_allow_html=True)
 
 # File uploader for image input
-uploaded_file = st.file_uploader("Upload an image of baked goods", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload an image of cooked food (Pls upload an image smaller than 5 mb)", type=["jpg", "jpeg", "png"])
 
 if uploaded_file:
     # Check file size (limit: 5 MB)
     if uploaded_file.size > 5 * 1024 * 1024:  # 5 MB in bytes
         st.error("File size exceeds 5 MB. Please upload a smaller file.")
     else:
-        # Display the uploaded image with a smaller size
-        img = Image.open(uploaded_file)
-        st.image(img, caption="Uploaded Image", width=400)  # Set width to 400 pixels
+        # Create two columns: one for the image and one for the recipe
+        col1, col2 = st.columns([1, 3])  # Adjust column width ratio as needed
 
-        # Prompt input
-        prompt = st.text_input("Enter a prompt for the recipe", "Provide an example recipe for the baked goods in the image")
+        # Display the uploaded image in the left column
+        with col1:
+            img = Image.open(uploaded_file)
+            st.image(img, caption="Uploaded Image", width=150)  # Set width to 150 pixels
 
-        if st.button("Generate Recipe"):
+        # Generate and display the recipe in the right column
+        with col2:
+            prompt = "You are a world-renowned chef. Provide a recipe for the image."
             with st.spinner("Generating recipe..."):
                 try:
                     # Call the core logic to generate the recipe
