@@ -31,15 +31,15 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-st.markdown('<p class="file-size-note">**Note:** Please upload an image smaller than <strong>1 MB</strong> (JPEG/PNG).</p>', unsafe_allow_html=True)
+st.markdown('<p class="file-size-note">**Note:** Please upload an image smaller than <strong>5 MB</strong> (JPEG/PNG).</p>', unsafe_allow_html=True)
 
 # File uploader for image input
 uploaded_file = st.file_uploader("Upload an image of baked goods", type=["jpg", "jpeg", "png"])
 
 if uploaded_file:
-    # Check file size (limit: 1 MB)
-    if uploaded_file.size > 1 * 1024 * 1024:  # 1 MB in bytes
-        st.error("File size exceeds 1 MB. Please upload a smaller file.")
+    # Check file size (limit: 5 MB)
+    if uploaded_file.size > 5 * 1024 * 1024:  # 5 MB in bytes
+        st.error("File size exceeds 5 MB. Please upload a smaller file.")
     else:
         # Display the uploaded image with a smaller size
         img = Image.open(uploaded_file)
