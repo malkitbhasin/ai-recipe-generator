@@ -16,7 +16,7 @@ st.markdown(
 
 # Streamlit UI
 st.title("AI Recipe Generator")
-st.write("Upload an image of baked goods, and the app will generate a recipe for you!")
+st.write("Upload an image of any cooked food, and the app will generate a recipe for you!")t
 
 # Custom message for file size limit
 st.markdown(
