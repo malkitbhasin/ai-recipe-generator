@@ -41,17 +41,17 @@ def generate_recipe(prompt, img):
 
 
 # Create a text prompt
-prompt = 'Provide an example recipe for the cooked food in the image'
+# prompt = 'Provide an example recipe for the cooked food in the image'
 
-# Load an image with PIL
-img = Image.open(os.path.join(os.path.dirname(__file__), "../baked_goods_1.jpg"))
+# # Load an image with PIL
+# img = Image.open(os.path.join(os.path.dirname(__file__), "../baked_goods_1.jpg"))
 
-# Call the Gemini API using LangChain
-recipe = generate_recipe(prompt, img)
-print(recipe)
+# # Call the Gemini API using LangChain
+# recipe = generate_recipe(prompt, img)
+# print(recipe)
 
-ingradients = parse_ingredients_with_openai(recipe)
-print(ingradients.to_string(index=False))
+# ingradients = parse_ingredients_with_openai(recipe)
+# print(ingradients.to_string(index=False))
 
 
 

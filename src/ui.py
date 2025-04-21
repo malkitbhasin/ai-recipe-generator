@@ -1,5 +1,9 @@
 import streamlit as st
+import sys
+import os
 from PIL import Image
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from build_recipe import generate_recipe
 from parse_ingredients import parse_ingredients_with_openai  # Import the parsing function
 from find_grocery_stores import get_nearby_stores  # Import the function to find nearby stores
