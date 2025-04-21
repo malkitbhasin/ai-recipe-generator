@@ -7,3 +7,4 @@ langgraph
 langchain_google_genai
 pillow
 streamlit
+geopy

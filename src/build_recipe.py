@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Baking with the Gemini API
-# 
-# To get started, [get an API key](https://g.co/ai/idxGetGeminiKey) and replace the word `TODO` below with your API key:
-
-# In[1]:
-
 import os
 import base64
 import io
@@ -14,9 +8,10 @@ from dotenv import load_dotenv
 from PIL import Image
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
+from parse_ingredients import parse_ingredients_with_openai
 
 # Load environment variables
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), "../.env"))
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     raise ValueError("GOOGLE_API_KEY is not set")
@@ -45,30 +40,18 @@ def generate_recipe(prompt, img):
     return ''.join(buffer)
 
 
-# Once you're done, create a text prompt here:
+# Create a text prompt
+prompt = 'Provide an example recipe for the cooked food in the image'
 
-# In[2]:
+# Load an image with PIL
+img = Image.open(os.path.join(os.path.dirname(__file__), "../baked_goods_1.jpg"))
 
-
-prompt = 'Provide an example recipe for the baked goods in the image'
-
-
-# And load an image with PIL:
-
-# In[3]:
-
-
-img = Image.open('baked_goods_1.jpg')
-# img = Image.open('baked_goods_2.jpg')
-# img = Image.open('baked_goods_3.jpg')
-img
-
-
-# And finally, call the Gemini API using LangChain. [See the docs](https://github.com/langchain-ai/langchain/blob/master/libs/partners/google-genai/langchain_google_genai/__init__.py)
-
-# In[4]:
-
-
+# Call the Gemini API using LangChain
 recipe = generate_recipe(prompt, img)
 print(recipe)
+
+ingradients = parse_ingredients_with_openai(recipe)
+print(ingradients.to_string(index=False))
+
+
 
